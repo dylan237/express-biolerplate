@@ -4,6 +4,8 @@ const path = require('path')
 const bodyParser = require('body-parser');
 const app = express()
 const port = process.env["PORT"]
+const multer = require('multer') // 提交form表單可以由res.body取得
+const upload = multer()
 
 // middle ware
 app.use(bodyParser.urlencoded({
@@ -11,7 +13,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
+app.get('/', upload.array(), (req, res) => {
 
 })
 
